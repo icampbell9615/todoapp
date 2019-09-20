@@ -8,7 +8,7 @@ const PORT = 4000;
 
 let Todo = require('./todo.model')
 
-app.use(cors());
+app.use(cors('*'));
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://127.0.0.1:27017/todos', { useNewUrlParser: true });
@@ -67,6 +67,14 @@ todoRoutes.route('/add').post(function(req, res) {
 
 app.use('/todos', todoRoutes);
 
-app.listen(PORT, function() {
+
+const server = app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
+const io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+    socket.on('SEND_MESSAGE', function(data){
+        io.emit('MESSAGE', data)
+    })
+})
