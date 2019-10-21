@@ -1,4 +1,4 @@
-<h1>Todo Application in React<h1>
+<h1>CRUD Todo Application in React<h1>
 Git Clone Repository and cd mern-todo-app, cd backend, node server.js to get MongoDB connected
 <br>
 New Terminal to the side cd mern-todo-app, cd client,  npm start 
